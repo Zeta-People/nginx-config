@@ -18,7 +18,7 @@ server {
     }
 
     location /oauth2/ {
-        proxy_pass       http://zeta:4180;
+        proxy_pass       http://10.0.13.60:4180;
         proxy_set_header Host                    $host;
         proxy_set_header X-Real-IP               $remote_addr;
         proxy_set_header X-Scheme                $scheme;
@@ -26,31 +26,31 @@ server {
     }
 
     location /ombi {
-        proxy_pass http://zeta:3579/ombi;
+        proxy_pass http://10.0.13.60:3579/ombi;
         include proxy-header;
         include oauth-proxy;
     }
 
     location /radarr {
-        proxy_pass http://zeta:7878/radarr;
+        proxy_pass http://10.0.13.60:7878/radarr;
         include proxy-header;
         include oauth-proxy;
     }
 
     location /sonarr {
-        proxy_pass http://zeta:8989/sonarr;
+        proxy_pass http://10.0.13.60:8989/sonarr;
         include proxy-header;
         include oauth-proxy;
     }
     
     location /nzbget {
-        proxy_pass http://zeta:6789;
+        proxy_pass http://10.0.13.60:6789;
         include proxy-header;
         include oauth-proxy;
     }
 
     location ~ /netdata/(?<ndpath>.*) {
-        proxy_pass http://zeta:19999/$ndpath$is_args$args;
+        proxy_pass http://10.0.13.60:19999/$ndpath$is_args$args;
         proxy_http_version 1.1;
         proxy_set_header Connection "keep-alive";
         proxy_store off;
